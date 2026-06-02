@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bentleigh Bhartiya Club Incorporated</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --saffron: #D4591A;
+    --saffron-light: #FEF3EB;
+    --green: #1A6B3A;
+    --green-light: #EAF4EE;
+    --navy: #1C2B4A;
+    --cream: #FDFAF6;
+    --text: #2C2C2A;
+    --muted: #6B6B68;
+    --border: rgba(0,0,0,0.09);
+    --radius: 12px;
+  }
+  body { font-family: 'DM Sans', sans-serif; font-size: 16px; line-height: 1.7; color: var(--text); background: var(--cream); }
+
+  /* NAV */
+  nav { background: white; border-bottom: 1px solid var(--border); padding: 0 2rem; position: sticky; top: 0; z-index: 100; }
+  nav .nav-inner { max-width: 1000px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+  nav .nav-logo { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--navy); padding: 0.9rem 0; white-space: nowrap; }
+  nav ul { list-style: none; display: flex; flex-wrap: wrap; }
+  nav ul li a { display: block; padding: 1rem 1rem; color: var(--muted); text-decoration: none; font-size: 13.5px; transition: color 0.2s; }
+  nav ul li a:hover { color: var(--saffron); }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(160deg, #FEF7F0 0%, #FDFCF8 40%, #EEF6F1 100%);
+    padding: 4rem 2rem 3.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-inner { max-width: 1000px; margin: 0 auto; display: flex; align-items: center; gap: 3rem; flex-wrap: wrap; }
+  .hero-logo-wrap { flex-shrink: 0; }
+  .hero-text { flex: 1; min-width: 260px; }
+  .hero-flags { display: flex; gap: 10px; align-items: center; margin-bottom: 1.2rem; }
+  .flag { border-radius: 3px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.15); }
+  .hero-badge {
+    display: inline-block;
+    background: var(--saffron-light);
+    border: 1px solid rgba(212,89,26,0.25);
+    color: var(--saffron);
+    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 3px 14px; border-radius: 20px; margin-bottom: 1rem;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700; line-height: 1.15; color: var(--navy); margin-bottom: 0.6rem;
+  }
+  .hero h1 em { color: var(--saffron); font-style: normal; }
+  .hero-sub { font-size: 1rem; color: var(--muted); margin-bottom: 0; }
+  .tribar { display: flex; width: 80px; height: 4px; border-radius: 2px; overflow: hidden; margin: 1rem 0 0; }
+  .tribar span:nth-child(1) { flex:1; background:#FF9933; }
+  .tribar span:nth-child(2) { flex:1; background:#fff; border-top:1px solid #eee; border-bottom:1px solid #eee; }
+  .tribar span:nth-child(3) { flex:1; background:#138808; }
+
+  /* SECTIONS */
+  section { padding: 4rem 2rem; }
+  .section-inner { max-width: 1000px; margin: 0 auto; }
+  .section-label { font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--saffron); font-weight: 500; margin-bottom: 0.4rem; }
+  h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 600; color: var(--navy); margin-bottom: 1.4rem; }
+  p { color: var(--muted); margin-bottom: 1rem; }
+
+  /* ABOUT */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: start; }
+  @media (max-width: 640px) { .about-grid { grid-template-columns: 1fr; } }
+  .about-text p { font-size: 1.02rem; }
+  .mission-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .mission-list li {
+    display: flex; gap: 12px; align-items: flex-start;
+    background: white; border: 0.5px solid var(--border);
+    border-left: 3px solid var(--saffron);
+    border-radius: var(--radius); padding: 0.85rem 1.1rem;
+    font-size: 0.93rem; color: var(--text);
+  }
+  .mission-list li .icon { font-size: 18px; flex-shrink: 0; margin-top: 2px; }
+
+  /* ACTIVITIES */
+  .activities-section { background: white; }
+  .activities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+  .activity-card {
+    background: var(--cream); border: 0.5px solid var(--border);
+    border-radius: var(--radius); padding: 1.4rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .activity-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.07); }
+  .activity-icon { font-size: 26px; margin-bottom: 0.6rem; }
+  .activity-card h3 { font-family: 'Playfair Display', serif; font-size: 0.97rem; font-weight: 600; color: var(--navy); margin-bottom: 0.3rem; }
+  .activity-card p { font-size: 0.85rem; color: var(--muted); margin: 0; }
+
+  /* SCHEDULE */
+  .schedule-section { background: var(--saffron-light); }
+  .schedule-layout { display: grid; grid-template-columns: auto 1fr; gap: 2.5rem; align-items: start; }
+  @media(max-width:640px) { .schedule-layout { grid-template-columns: 1fr; } }
+  .schedule-box { background: white; border-radius: var(--radius); border: 0.5px solid var(--border); overflow: hidden; min-width: 300px; }
+  .schedule-header { background: var(--saffron); color: white; padding: 0.9rem 1.4rem; font-family: 'Playfair Display', serif; font-size: 1rem; }
+  .schedule-row { display: flex; justify-content: space-between; align-items: center; padding: 0.9rem 1.4rem; border-bottom: 0.5px solid var(--border); gap: 1rem; }
+  .schedule-row:last-child { border-bottom: none; }
+  .schedule-day { font-weight: 500; color: var(--navy); }
+  .schedule-detail { font-size: 0.85rem; color: var(--muted); }
+  .schedule-time { background: var(--green-light); color: var(--green); font-size: 0.82rem; font-weight: 500; padding: 4px 12px; border-radius: 20px; white-space: nowrap; }
+  .date-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 0.75rem; }
+  .date-chip { background: white; border: 0.5px solid var(--border); border-radius: 8px; padding: 5px 13px; font-size: 0.85rem; color: var(--navy); }
+  .date-chip.friday { border-left: 3px solid var(--saffron); }
+  .date-chip.sunday { border-left: 3px solid var(--green); }
+  .legend { margin-top: 0.75rem; font-size: 0.82rem; color: var(--muted); display: flex; gap: 14px; }
+  .legend span { display: inline-flex; align-items: center; gap: 5px; }
+  .dot { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+
+  /* GALLERY */
+  .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  @media(max-width:640px) { .gallery-grid { grid-template-columns: repeat(2,1fr); } }
+  .gallery-slot {
+    aspect-ratio: 4/3; background: #F4F0EA;
+    border: 1.5px dashed #ccc; border-radius: var(--radius);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 6px; color: #aaa; font-size: 0.78rem; cursor: pointer; transition: background 0.2s;
+  }
+  .gallery-slot:hover { background: #ebe6de; }
+  .gallery-slot-icon { font-size: 26px; }
+  .video-slot {
+    grid-column: span 2; aspect-ratio: 16/9;
+    background: #1a1a2e; border-radius: var(--radius);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 8px; color: rgba(255,255,255,0.45); font-size: 0.82rem;
+  }
+
+  /* FACEBOOK */
+  .fb-section { background: white; }
+  .fb-card {
+    background: #1877F2; border-radius: var(--radius);
+    padding: 1.6rem 2rem; display: flex; align-items: center; gap: 1.4rem;
+    max-width: 460px; text-decoration: none; transition: opacity 0.2s, transform 0.2s;
+  }
+  .fb-card:hover { opacity: 0.92; transform: translateY(-2px); }
+  .fb-logo { width: 52px; height: 52px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; flex-shrink: 0; color: #1877F2; font-weight: 700; font-family: serif; }
+  .fb-text h3 { color: white; font-size: 1.05rem; font-weight: 600; font-family: 'Playfair Display', serif; margin-bottom: 3px; }
+  .fb-text p { color: rgba(255,255,255,0.8); font-size: 0.88rem; margin: 0; }
+
+  /* CONTACT */
+  .contact-section { background: var(--green-light); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  @media(max-width:640px) { .contact-grid { grid-template-columns: 1fr; } }
+  .contact-card { background: white; border-radius: var(--radius); border: 0.5px solid var(--border); padding: 1.4rem; }
+  .contact-card h3 { font-family: 'Playfair Display', serif; color: var(--navy); font-size: 1rem; margin-bottom: 0.9rem; }
+  .contact-item { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 0.7rem; font-size: 0.92rem; color: var(--muted); }
+  .contact-item span { flex-shrink: 0; font-size: 17px; }
+
+  /* FOOTER */
+  footer { background: var(--navy); color: rgba(255,255,255,0.55); text-align: center; padding: 2.5rem 2rem; font-size: 0.83rem; line-height: 1.9; }
+  footer strong { color: rgba(255,255,255,0.9); }
+  .footer-flags { display: flex; justify-content: center; align-items: center; gap: 10px; margin: 1rem 0 0.5rem; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">🪷 Bentleigh Bhartiya Club</div>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#activities">Activities</a></li>
+      <li><a href="#schedule">Schedule</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#connect">Facebook</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+
+    <!-- LOGO SVG -->
+    <div class="hero-logo-wrap">
+      <svg width="180" height="180" viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
+        <!-- Outer circle ring - saffron -->
+        <circle cx="90" cy="90" r="86" fill="none" stroke="#D4591A" stroke-width="3"/>
+        <!-- Inner circle ring - green -->
+        <circle cx="90" cy="90" r="78" fill="none" stroke="#1A6B3A" stroke-width="1.5"/>
+        <!-- Background fill -->
+        <circle cx="90" cy="90" r="77" fill="#FDFAF6"/>
+
+        <!-- Lotus petals (8 petals around centre) -->
+        <g transform="translate(90,90)">
+          <!-- petal 1 top -->
+          <ellipse cx="0" cy="-42" rx="9" ry="18" fill="#D4591A" opacity="0.85" transform="rotate(0)"/>
+          <ellipse cx="0" cy="-42" rx="9" ry="18" fill="#D4591A" opacity="0.85" transform="rotate(45)"/>
+          <ellipse cx="0" cy="-42" rx="9" ry="18" fill="#D4591A" opacity="0.85" transform="rotate(90)"/>
+          <ellipse cx="0" cy="-42" rx="9" ry="18" fill="#D4591A" opacity="0.85" transform="rotate(135)"/>
+          <ellipse cx="0" cy="-42" rx="9" ry="18" fill="#D4591A" opacity="0.85" transform="rotate(180)"/>
+          <ellipse cx="0" cy="-42" rx="9" ry="18" fill="#D4591A" opacity="0.85" transform="rotate(225)"/>
+          <ellipse cx="0" cy="-42" rx="9" ry="18" fill="#D4591A" opacity="0.85" transform="rotate(270)"/>
+          <ellipse cx="0" cy="-42" rx="9" ry="18" fill="#D4591A" opacity="0.85" transform="rotate(315)"/>
+          <!-- Inner lighter petals -->
+          <ellipse cx="0" cy="-26" rx="6" ry="12" fill="#F4845A" opacity="0.7" transform="rotate(22.5)"/>
+          <ellipse cx="0" cy="-26" rx="6" ry="12" fill="#F4845A" opacity="0.7" transform="rotate(67.5)"/>
+          <ellipse cx="0" cy="-26" rx="6" ry="12" fill="#F4845A" opacity="0.7" transform="rotate(112.5)"/>
+          <ellipse cx="0" cy="-26" rx="6" ry="12" fill="#F4845A" opacity="0.7" transform="rotate(157.5)"/>
+          <ellipse cx="0" cy="-26" rx="6" ry="12" fill="#F4845A" opacity="0.7" transform="rotate(202.5)"/>
+          <ellipse cx="0" cy="-26" rx="6" ry="12" fill="#F4845A" opacity="0.7" transform="rotate(247.5)"/>
+          <ellipse cx="0" cy="-26" rx="6" ry="12" fill="#F4845A" opacity="0.7" transform="rotate(292.5)"/>
+          <ellipse cx="0" cy="-26" rx="6" ry="12" fill="#F4845A" opacity="0.7" transform="rotate(337.5)"/>
+          <!-- Centre circle -->
+          <circle cx="0" cy="0" r="16" fill="#1A6B3A"/>
+          <circle cx="0" cy="0" r="12" fill="white"/>
+          <!-- Ashoka chakra simplified (24 spokes) -->
+          <circle cx="0" cy="0" r="10" fill="none" stroke="#000080" stroke-width="1.2"/>
+          <line x1="0" y1="-10" x2="0" y2="10" stroke="#000080" stroke-width="0.7"/>
+          <line x1="-10" y1="0" x2="10" y2="0" stroke="#000080" stroke-width="0.7"/>
+          <line x1="-7.07" y1="-7.07" x2="7.07" y2="7.07" stroke="#000080" stroke-width="0.7"/>
+          <line x1="7.07" y1="-7.07" x2="-7.07" y2="7.07" stroke="#000080" stroke-width="0.7"/>
+          <line x1="-3.83" y1="-9.24" x2="3.83" y2="9.24" stroke="#000080" stroke-width="0.5"/>
+          <line x1="3.83" y1="-9.24" x2="-3.83" y2="9.24" stroke="#000080" stroke-width="0.5"/>
+          <line x1="-9.24" y1="-3.83" x2="9.24" y2="3.83" stroke="#000080" stroke-width="0.5"/>
+          <line x1="9.24" y1="-3.83" x2="-9.24" y2="3.83" stroke="#000080" stroke-width="0.5"/>
+          <circle cx="0" cy="0" r="2.5" fill="#000080"/>
+        </g>
+
+        <!-- Club name arc top -->
+        <path id="topArc" d="M 20,90 A 70,70 0 0,1 160,90" fill="none"/>
+        <text font-family="'Playfair Display', serif" font-size="11.5" fill="#1C2B4A" font-weight="600" letter-spacing="1">
+          <textPath href="#topArc" startOffset="8%">BENTLEIGH BHARTIYA CLUB</textPath>
+        </text>
+
+        <!-- Inc arc bottom -->
+        <path id="botArc" d="M 35,110 A 60,60 0 0,0 145,110" fill="none"/>
+        <text font-family="'DM Sans', sans-serif" font-size="10" fill="#D4591A" letter-spacing="2">
+          <textPath href="#botArc" startOffset="22%">INCORPORATED</textPath>
+        </text>
+
+        <!-- Est line -->
+        <text x="90" y="148" text-anchor="middle" font-family="'DM Sans', sans-serif" font-size="9.5" fill="#6B6B68" letter-spacing="1">Est. June 2023 · Melbourne</text>
+      </svg>
+    </div>
+
+    <!-- HERO TEXT -->
+    <div class="hero-text">
+      <div class="hero-flags">
+        <!-- Indian Flag SVG -->
+        <svg class="flag" width="44" height="29" viewBox="0 0 44 29" xmlns="http://www.w3.org/2000/svg">
+          <rect width="44" height="29" fill="white"/>
+          <rect width="44" height="9.67" fill="#FF9933"/>
+          <rect y="19.33" width="44" height="9.67" fill="#138808"/>
+          <!-- Ashoka Chakra simplified -->
+          <circle cx="22" cy="14.5" r="5" fill="none" stroke="#000080" stroke-width="0.8"/>
+          <circle cx="22" cy="14.5" r="0.9" fill="#000080"/>
+          <line x1="22" y1="9.5" x2="22" y2="19.5" stroke="#000080" stroke-width="0.5"/>
+          <line x1="17" y1="14.5" x2="27" y2="14.5" stroke="#000080" stroke-width="0.5"/>
+          <line x1="18.46" y1="10.96" x2="25.54" y2="18.04" stroke="#000080" stroke-width="0.5"/>
+          <line x1="25.54" y1="10.96" x2="18.46" y2="18.04" stroke="#000080" stroke-width="0.5"/>
+          <line x1="17.18" y1="12.08" x2="26.82" y2="16.92" stroke="#000080" stroke-width="0.4"/>
+          <line x1="26.82" y1="12.08" x2="17.18" y2="16.92" stroke="#000080" stroke-width="0.4"/>
+          <line x1="20.08" y1="9.68" x2="23.92" y2="19.32" stroke="#000080" stroke-width="0.4"/>
+          <line x1="23.92" y1="9.68" x2="20.08" y2="19.32" stroke="#000080" stroke-width="0.4"/>
+        </svg>
+
+        <span style="font-size:0.8rem; color:var(--muted);">&amp;</span>
+
+        <!-- Australian Flag SVG -->
+        <svg class="flag" width="44" height="29" viewBox="0 0 44 29" xmlns="http://www.w3.org/2000/svg">
+          <!-- Blue background -->
+          <rect width="44" height="29" fill="#00008B"/>
+          <!-- Union Jack area (top left 22x14.5) -->
+          <!-- White diagonals -->
+          <line x1="0" y1="0" x2="22" y2="14.5" stroke="white" stroke-width="4"/>
+          <line x1="22" y1="0" x2="0" y2="14.5" stroke="white" stroke-width="4"/>
+          <!-- Red diagonals -->
+          <line x1="0" y1="0" x2="22" y2="14.5" stroke="#CC0000" stroke-width="2"/>
+          <line x1="22" y1="0" x2="0" y2="14.5" stroke="#CC0000" stroke-width="2"/>
+          <!-- White cross -->
+          <rect x="9" y="0" width="4" height="14.5" fill="white"/>
+          <rect x="0" y="5.25" width="22" height="4" fill="white"/>
+          <!-- Red cross -->
+          <rect x="10" y="0" width="2" height="14.5" fill="#CC0000"/>
+          <rect x="0" y="6.25" width="22" height="2" fill="#CC0000"/>
+          <!-- Commonwealth star (below union jack left) -->
+          <polygon points="4,17 4.8,19.5 7.5,19.5 5.3,21 6.1,23.5 4,22 1.9,23.5 2.7,21 0.5,19.5 3.2,19.5" fill="white" transform="translate(3,1)"/>
+          <!-- Southern Cross stars (right side) -->
+          <!-- Large star -->
+          <polygon points="35,7 35.6,8.8 37.5,8.8 36,10 36.6,11.8 35,10.7 33.4,11.8 34,10 32.5,8.8 34.4,8.8" fill="white"/>
+          <!-- Small stars -->
+          <polygon points="30,16 30.4,17.2 31.6,17.2 30.6,18 31,19.2 30,18.5 29,19.2 29.4,18 28.4,17.2 29.6,17.2" fill="white"/>
+          <polygon points="38,17 38.4,18.2 39.6,18.2 38.6,19 39,20.2 38,19.5 37,20.2 37.4,19 36.4,18.2 37.6,18.2" fill="white"/>
+          <polygon points="34,21 34.4,22.2 35.6,22.2 34.6,23 35,24.2 34,23.5 33,24.2 33.4,23 32.4,22.2 33.6,22.2" fill="white"/>
+          <polygon points="40,12 40.3,13 41.2,13 40.5,13.6 40.8,14.6 40,14 39.2,14.6 39.5,13.6 38.8,13 39.7,13" fill="white"/>
+        </svg>
+      </div>
+
+      <div class="hero-badge">Melbourne · Registered Non-Profit</div>
+      <h1>Bentleigh<br><em>Bhartiya Club</em></h1>
+      <p class="hero-sub">A welcoming community for senior citizens in Melbourne — active, joyful, and connected.</p>
+      <div class="tribar"><span></span><span></span><span></span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <p class="section-label">Who we are</p>
+    <h2>A community built on warmth &amp; belonging</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>The Bentleigh Bhartiya Club is a government-recognised, registered non-profit seniors' organisation based in Melbourne. Since June 2023, members have been gathering regularly in the Bentleigh and McKinnon areas, sharing culture, laughter, and support.</p>
+        <p>Our weekly gatherings feature a rich variety of social, cultural, and health-focused activities — all designed for the senior community to flourish together.</p>
+      </div>
+      <ul class="mission-list">
+        <li><span class="icon">💬</span> A platform to exchange ideas and life experiences</li>
+        <li><span class="icon">🤝</span> Reducing loneliness and homesickness for seniors living abroad</li>
+        <li><span class="icon">🧠</span> Encouraging mental and physical activity in later years</li>
+        <li><span class="icon">✨</span> Helping members live in Australia with confidence, dignity, and joy</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ACTIVITIES -->
+<section id="activities" class="activities-section">
+  <div class="section-inner">
+    <p class="section-label">What we do</p>
+    <h2>Activities &amp; programs</h2>
+    <div class="activities-grid">
+      <div class="activity-card">
+        <div class="activity-icon">🧘</div>
+        <h3>Yoga &amp; Pranayama</h3>
+        <p>Sessions by qualified instructors, thoughtfully tailored for seniors.</p>
+      </div>
+      <div class="activity-card">
+        <div class="activity-icon">🎶</div>
+        <h3>Music &amp; Culture</h3>
+        <p>Singing, dance, and opportunities for members to showcase their talents.</p>
+      </div>
+      <div class="activity-card">
+        <div class="activity-icon">🛕</div>
+        <h3>Excursions &amp; Temple Visits</h3>
+        <p>Organised sightseeing trips and visits to local temples.</p>
+      </div>
+      <div class="activity-card">
+        <div class="activity-icon">🪔</div>
+        <h3>Festival Celebrations</h3>
+        <p>Indian festivals from all religions, plus major global celebrations.</p>
+      </div>
+      <div class="activity-card">
+        <div class="activity-icon">🎂</div>
+        <h3>Birthdays &amp; Anniversaries</h3>
+        <p>Celebrating milestones and special moments together.</p>
+      </div>
+      <div class="activity-card">
+        <div class="activity-icon">📱</div>
+        <h3>Smartphone Training</h3>
+        <p>Helping seniors manage daily life in an English-speaking country.</p>
+      </div>
+      <div class="activity-card">
+        <div class="activity-icon">🎓</div>
+        <h3>Expert Talks</h3>
+        <p>Periodic guidance sessions on topics important to senior wellbeing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCHEDULE -->
+<section id="schedule" class="schedule-section">
+  <div class="section-inner">
+    <p class="section-label">When we meet</p>
+    <h2>Meeting schedule</h2>
+    <div class="schedule-layout">
+      <div>
+        <div class="schedule-box">
+          <div class="schedule-header">📅 Regular Gatherings — Bentleigh &amp; McKinnon</div>
+          <div class="schedule-row">
+            <div>
+              <div class="schedule-day">Every Friday</div>
+              <div class="schedule-detail">Weekly gathering</div>
+            </div>
+            <div class="schedule-time">12:30 pm – 3:00 pm</div>
+          </div>
+          <div class="schedule-row">
+            <div>
+              <div class="schedule-day">Alternate Sundays</div>
+              <div class="schedule-detail">Fortnightly gathering</div>
+            </div>
+            <div class="schedule-time">12:30 pm – 3:00 pm</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h3 style="font-family:'Playfair Display',serif; color:var(--navy); font-size:1.05rem; margin-bottom:0.75rem;">Upcoming dates — Jun to Nov 2026</h3>
+
+        <p style="font-size:0.85rem; font-weight:500; color:var(--navy); margin:0.6rem 0 0.3rem;">June</p>
+        <div class="date-chips">
+          <div class="date-chip friday">Fri 5 Jun</div>
+          <div class="date-chip sunday">Sun 7 Jun</div>
+          <div class="date-chip friday">Fri 12 Jun</div>
+          <div class="date-chip friday">Fri 19 Jun</div>
+          <div class="date-chip sunday">Sun 21 Jun</div>
+          <div class="date-chip friday">Fri 26 Jun</div>
+        </div>
+
+        <p style="font-size:0.85rem; font-weight:500; color:var(--navy); margin:0.6rem 0 0.3rem;">July</p>
+        <div class="date-chips">
+          <div class="date-chip friday">Fri 3 Jul</div>
+          <div class="date-chip sunday">Sun 5 Jul</div>
+          <div class="date-chip friday">Fri 10 Jul</div>
+          <div class="date-chip friday">Fri 17 Jul</div>
+          <div class="date-chip sunday">Sun 19 Jul</div>
+          <div class="date-chip friday">Fri 24 Jul</div>
+        </div>
+
+        <p style="font-size:0.85rem; font-weight:500; color:var(--navy); margin:0.6rem 0 0.3rem;">August</p>
+        <div class="date-chips">
+          <div class="date-chip friday">Fri 7 Aug</div>
+          <div class="date-chip sunday">Sun 2 Aug</div>
+          <div class="date-chip friday">Fri 14 Aug</div>
+          <div class="date-chip friday">Fri 21 Aug</div>
+          <div class="date-chip sunday">Sun 16 Aug</div>
+          <div class="date-chip friday">Fri 28 Aug</div>
+          <div class="date-chip sunday">Sun 30 Aug</div>
+        </div>
+
+        <p style="font-size:0.85rem; font-weight:500; color:var(--navy); margin:0.6rem 0 0.3rem;">September</p>
+        <div class="date-chips">
+          <div class="date-chip friday">Fri 4 Sep</div>
+          <div class="date-chip friday">Fri 11 Sep</div>
+          <div class="date-chip sunday">Sun 13 Sep</div>
+          <div class="date-chip friday">Fri 18 Sep</div>
+          <div class="date-chip friday">Fri 25 Sep</div>
+          <div class="date-chip sunday">Sun 27 Sep</div>
+        </div>
+
+        <p style="font-size:0.85rem; font-weight:500; color:var(--navy); margin:0.6rem 0 0.3rem;">October</p>
+        <div class="date-chips">
+          <div class="date-chip friday">Fri 2 Oct</div>
+          <div class="date-chip friday">Fri 9 Oct</div>
+          <div class="date-chip sunday">Sun 11 Oct</div>
+          <div class="date-chip friday">Fri 16 Oct</div>
+          <div class="date-chip friday">Fri 23 Oct</div>
+          <div class="date-chip sunday">Sun 25 Oct</div>
+          <div class="date-chip friday">Fri 30 Oct</div>
+        </div>
+
+        <p style="font-size:0.85rem; font-weight:500; color:var(--navy); margin:0.6rem 0 0.3rem;">November</p>
+        <div class="date-chips">
+          <div class="date-chip friday">Fri 6 Nov</div>
+          <div class="date-chip sunday">Sun 8 Nov</div>
+          <div class="date-chip friday">Fri 13 Nov</div>
+          <div class="date-chip friday">Fri 20 Nov</div>
+          <div class="date-chip sunday">Sun 22 Nov</div>
+          <div class="date-chip friday">Fri 27 Nov</div>
+        </div>
+        <div class="legend">
+          <span><span class="dot" style="background:var(--saffron);"></span> Friday</span>
+          <span><span class="dot" style="background:var(--green);"></span> Sunday</span>
+        </div>
+        <p style="margin-top:1.2rem; font-size:0.88rem;">All are welcome. No booking required — just come along!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="section-inner">
+    <p class="section-label">Moments &amp; memories</p>
+    <h2>Photos &amp; videos</h2>
+    <p>A glimpse into our gatherings, celebrations, and activities. Replace these placeholders with your own photos and videos.</p>
+    <div class="gallery-grid">
+      <div class="gallery-slot"><div class="gallery-slot-icon">📷</div><div>Add photo</div></div>
+      <div class="gallery-slot"><div class="gallery-slot-icon">📷</div><div>Add photo</div></div>
+      <div class="gallery-slot"><div class="gallery-slot-icon">📷</div><div>Add photo</div></div>
+      <div class="video-slot">
+        <div style="font-size:38px;">▶️</div>
+        <div>Add video or paste YouTube link here</div>
+      </div>
+      <div class="gallery-slot"><div class="gallery-slot-icon">📷</div><div>Add photo</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FACEBOOK -->
+<section id="connect" class="fb-section">
+  <div class="section-inner">
+    <p class="section-label">Follow us</p>
+    <h2>Stay connected</h2>
+    <p>Join our Facebook page for event updates, photos, and community news.</p>
+    <!-- Replace href with your actual Facebook page URL -->
+    <a href="https://www.facebook.com/BentleighBhartiyaClub" target="_blank" class="fb-card">
+      <div class="fb-logo">f</div>
+      <div class="fb-text">
+        <h3>Bentleigh Bhartiya Club</h3>
+        <p>Follow us on Facebook for updates &amp; event news</p>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+  <div class="section-inner">
+    <p class="section-label">Get in touch</p>
+    <h2>Contact us</h2>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <h3>📍 Location</h3>
+        <div class="contact-item"><span>🏠</span> 45A Valkstone Street, Bentleigh East VIC 3165</div>
+        <div class="contact-item"><span>🏘️</span> Meetings in Bentleigh &amp; McKinnon areas</div>
+        <div class="contact-item"><span>🚉</span> Accessible by public transport</div>
+      </div>
+      <div class="contact-card">
+        <h3>📞 Reach us</h3>
+        <div class="contact-item"><span>📧</span><a href="mailto:bentleighbhartiyaclub@gmail.com" style="color:var(--saffron); text-decoration:none;">bentleighbhartiyaclub@gmail.com</a></div>
+        <div class="contact-item"><span>🏛️</span> ABN: 22 377 571 963</div>
+        <div class="contact-item"><span>📋</span> Registration No: A0119829R</div>
+        <div class="contact-item"><span>✅</span> Registered Non-Profit, Victoria</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-flags">
+    <!-- Indian flag mini -->
+    <svg class="flag" width="36" height="24" viewBox="0 0 44 29" xmlns="http://www.w3.org/2000/svg" style="border-radius:2px; box-shadow:0 1px 3px rgba(0,0,0,0.3);">
+      <rect width="44" height="29" fill="white"/>
+      <rect width="44" height="9.67" fill="#FF9933"/>
+      <rect y="19.33" width="44" height="9.67" fill="#138808"/>
+      <circle cx="22" cy="14.5" r="5" fill="none" stroke="#000080" stroke-width="0.8"/>
+      <circle cx="22" cy="14.5" r="0.9" fill="#000080"/>
+      <line x1="22" y1="9.5" x2="22" y2="19.5" stroke="#000080" stroke-width="0.5"/>
+      <line x1="17" y1="14.5" x2="27" y2="14.5" stroke="#000080" stroke-width="0.5"/>
+      <line x1="18.46" y1="10.96" x2="25.54" y2="18.04" stroke="#000080" stroke-width="0.5"/>
+      <line x1="25.54" y1="10.96" x2="18.46" y2="18.04" stroke="#000080" stroke-width="0.5"/>
+    </svg>
+    <span style="color:rgba(255,255,255,0.4); font-size:0.8rem;">🤝</span>
+    <!-- Australian flag mini -->
+    <svg class="flag" width="36" height="24" viewBox="0 0 44 29" xmlns="http://www.w3.org/2000/svg" style="border-radius:2px; box-shadow:0 1px 3px rgba(0,0,0,0.3);">
+      <rect width="44" height="29" fill="#00008B"/>
+      <line x1="0" y1="0" x2="22" y2="14.5" stroke="white" stroke-width="4"/>
+      <line x1="22" y1="0" x2="0" y2="14.5" stroke="white" stroke-width="4"/>
+      <line x1="0" y1="0" x2="22" y2="14.5" stroke="#CC0000" stroke-width="2"/>
+      <line x1="22" y1="0" x2="0" y2="14.5" stroke="#CC0000" stroke-width="2"/>
+      <rect x="9" y="0" width="4" height="14.5" fill="white"/>
+      <rect x="0" y="5.25" width="22" height="4" fill="white"/>
+      <rect x="10" y="0" width="2" height="14.5" fill="#CC0000"/>
+      <rect x="0" y="6.25" width="22" height="2" fill="#CC0000"/>
+      <polygon points="4,17 4.8,19.5 7.5,19.5 5.3,21 6.1,23.5 4,22 1.9,23.5 2.7,21 0.5,19.5 3.2,19.5" fill="white" transform="translate(3,1)"/>
+      <polygon points="35,7 35.6,8.8 37.5,8.8 36,10 36.6,11.8 35,10.7 33.4,11.8 34,10 32.5,8.8 34.4,8.8" fill="white"/>
+      <polygon points="30,16 30.4,17.2 31.6,17.2 30.6,18 31,19.2 30,18.5 29,19.2 29.4,18 28.4,17.2 29.6,17.2" fill="white"/>
+      <polygon points="38,17 38.4,18.2 39.6,18.2 38.6,19 39,20.2 38,19.5 37,20.2 37.4,19 36.4,18.2 37.6,18.2" fill="white"/>
+      <polygon points="34,21 34.4,22.2 35.6,22.2 34.6,23 35,24.2 34,23.5 33,24.2 33.4,23 32.4,22.2 33.6,22.2" fill="white"/>
+    </svg>
+  </div>
+  <strong>Bentleigh Bhartiya Club Incorporated</strong><br>
+  ABN: 22 377 571 963 &nbsp;·&nbsp; Registration No: A0119829R<br>
+  45A Valkstone Street, Bentleigh East VIC 3165<br>
+  <a href="mailto:bentleighbhartiyaclub@gmail.com" style="color:rgba(255,255,255,0.5); text-decoration:none;">bentleighbhartiyaclub@gmail.com</a>
+  &nbsp;·&nbsp; Est. June 2023
+</footer>
+
+</body>
+</html>
