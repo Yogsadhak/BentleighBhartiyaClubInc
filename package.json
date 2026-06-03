@@ -1,0 +1,18 @@
+{
+  "name": "bentleigh-bhartiya-club",
+  "version": "1.0.0",
+  "description": "Bentleigh Bhartiya Club - A welcoming community for senior citizens in Melbourne",
+  "main": "index.html",
+  "scripts": {
+    "serve": "python3 -m http.server 8000",
+    "deploy": "echo 'Ready for deployment. Push to main branch for GitHub Pages deployment.'"
+  },
+  "keywords": [
+    "community",
+    "seniors",
+    "melbourne",
+    "cultural"
+  ],
+  "author": "Bentleigh Bhartiya Club",
+  "license": "MIT"
+}
